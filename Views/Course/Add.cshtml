@@ -1,0 +1,83 @@
+﻿@using Chiayin_Yang_Assignment2.Entities
+@model Chiayin_Yang_Assignment2.Entities.Course
+
+@{
+    ViewBag.Title = "Add a new course";
+}
+
+
+
+@section scripts {
+    @* Include jQuery and jQuery UI *@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <script>
+        $(document).ready(function () {
+            // setup the jQuerui datepicker component:
+            $('input[type=datetime]').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+100"
+            });
+        });
+    </script>
+
+    @* Existing validation scripts *@
+    @* <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script> *@
+    @* <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h1>Add a new course</h1>
+<form asp-controller="Course" asp-action="Add" method="post" enctype="application/x-www-form-urlencoded">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-2"><label>Name</label></div>
+        <div class="col-sm-4">
+            <input type="text" asp-for="@Model.Name" class="form-control" />
+        </div>
+        <div class="col-sm-6">
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2"><label>Instructor</label></div>
+        <div class="col-sm-4">
+            <input type="text" asp-for="@Model.Instructor" class="form-control" />
+        </div>
+        <div class="col-sm-6">
+            <span asp-validation-for="@Model.Instructor" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2"><label>Start date</label></div>
+        <div class="col-sm-4">
+            <input type="datetime" asp-for="@Model.StartDate" class="form-control" value="@Model.StartDate.ToString("d")" />
+        </div>
+        <div class="col-sm-6">
+            <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2"><label>Room number</label></div>
+        <div class="col-sm-4">
+            <input type="text" asp-for="@Model.RoomNumber" class="form-control" />
+        </div>
+        <div class="col-sm-6">
+            <span asp-validation-for="@Model.RoomNumber" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a asp-controller="Course" asp-action="Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Chiayin_Yang_Assignment2.Entities.Course>
+
+@{
+    ViewData["Title"] = "All my Courses";
+}
+
+<h2>All my courses</h2>
+
+<p>
+    <a asp-controller="Course" asp-action="Add" class="text-primary">Add a new course</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th>Start date</th>
+                <th>Room #</th>
+                <th># of students</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.Name</td>
+                    <td>@course.Instructor</td>
+                    <td>@course.StartDate.ToString("M/d/yyyy h:mm tt")</td>
+                    <td>@course.RoomNumber</td>
+                    <td>@course.Students.Count</td>
+                    <td>
+                        <a asp-action="Manage" asp-route-courseId="@course.CourseId" class="text-primary">Manage</a> |
+                        <a asp-action="Edit" asp-route-courseId="@course.CourseId" class="text-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

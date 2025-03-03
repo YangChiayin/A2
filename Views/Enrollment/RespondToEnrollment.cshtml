@@ -1,0 +1,33 @@
+﻿@model Chiayin_Yang_Assignment2.Entities.Student
+
+<h2>Confirmation response</h2>
+
+<div>
+    <div>
+        <h5>You have been invited to enroll in the "@Model.Course.Name" course!</h5>
+        <p>
+            Hey @Model.Name, you have been invited to enroll in the "@Model.Course.Name" in room @Model.Course.RoomNumber starting on @Model.Course.StartDate.ToString("MM/dd/yyyy") with instructor @Model.Course.Instructor - we would be thrilled to have join us but ask that you confirm your enrollment!
+        </p>
+
+        <form asp-action="SubmitResponse" method="post">
+
+            <p>Do you want to enroll?</p>
+            <input type="hidden" name="studentId" value="@Model.StudentId" />
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="confirmed" value="true" id="confirmYes" required>
+                <label class="form-check-label" for="confirmYes">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="confirmed" value="false" id="confirmNo">
+                <label class="form-check-label" for="confirmNo">
+                    No
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Submit response</button>
+        </form>
+    </div>
+</div>
